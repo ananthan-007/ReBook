@@ -1,32 +1,30 @@
 package com.rebook.dao;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBConnection {
-    // Example MySQL:
-    // private static final String URL = "jdbc:mysql://localhost:3306/bookexchange?useSSL=false&serverTimezone=UTC";
-    // private static final String USER = "app_user";
-    // private static final String PASS = "app_password";
+    private static Connection conn = null;
 
-    // Example SQLite:
-    // private static final String URL = "jdbc:sqlite:database/rebook.db";
+    public static Connection getConnection() {
+        if (conn != null) return conn;
 
-    private static final String URL = "jdbc:sqlite:database/reusehub.db";
-    private static final String USER = "";
-    private static final String PASS = "";
+        Properties props = new Properties();
+        try (FileInputStream fis = new FileInputStream("config/db.properties")) {
+            props.load(fis);
 
-    static {
-        try {
-            // For MySQL you might need: Class.forName("com.mysql.cj.jdbc.Driver");
-            // For SQLite: Class.forName("org.sqlite.JDBC");
-        } catch (Exception e) {
-            // ignore; drivers usually auto-register in modern setups
+            String url = props.getProperty("db.url");
+            String user = props.getProperty("db.user");
+            String pass = props.getProperty("db.password");
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conn = DriverManager.getConnection(url, user, pass);
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-    }
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASS);
+        return conn;
     }
 }

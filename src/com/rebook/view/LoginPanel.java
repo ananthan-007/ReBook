@@ -1,11 +1,11 @@
 package com.rebook.view;
 
+import com.rebook.dao.UserDAO;
+import com.rebook.model.User;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import com.rebook.dao.UserDAO;
-import com.rebook.model.User;
 
 public class LoginPanel extends JFrame implements ActionListener {
 
@@ -93,9 +93,9 @@ public class LoginPanel extends JFrame implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid email or password!");
             }
-        } else if (e.getSource() == signUpButton) {
-            dispose(); // close login
-            //new SignupPanel(); // open signup window (to be created)
+        }  else if (e.getSource() == signUpButton) {
+            dispose();
+            new RegisterPanel();
         }
     }
 }

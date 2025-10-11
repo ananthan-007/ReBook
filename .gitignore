@@ -2,7 +2,7 @@
 *.class
 
 #configs
-config/db.properties
+config/
 
 # Log files
 *.log

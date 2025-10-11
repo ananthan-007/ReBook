@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.rebook.dao.UserDAO;
+import com.rebook.model.User;
+
 public class LoginPanel extends JFrame implements ActionListener {
 
     private JTextField emailField;
@@ -74,8 +77,25 @@ public class LoginPanel extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            String email = emailField.getText();
-            String password = new String(pswdField.getPassword());
-            System.out.println("Login attempt with Email: " + email);        }
+            String email = emailField.getText().trim();
+            String password = new String(pswdField.getPassword()).trim();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter email and password!");
+                return;
+            }
+
+            User user = UserDAO.loginUser(email, password);
+            if (user != null) {
+                JOptionPane.showMessageDialog(this, "Welcome back, " + user.getName() + "!");
+                dispose(); // close login
+                // new HomePage(user);  // open home window (to be implemented)
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid email or password!");
+            }
+        } else if (e.getSource() == signUpButton) {
+            dispose(); // close login
+            //new SignupPanel(); // open signup window (to be created)
+        }
     }
 }

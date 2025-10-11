@@ -1,10 +1,9 @@
 package com.rebook.view;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Arrays;
+import javax.swing.*;
 
 public class RegisterPanel extends JFrame implements ActionListener {
 
@@ -13,6 +12,7 @@ public class RegisterPanel extends JFrame implements ActionListener {
     private JPasswordField pswdField;
     private JPasswordField confirmPswdField;
     private JButton registerButton;
+    private JButton loginButton;
 
     public RegisterPanel() {
         setTitle("Register Page");
@@ -44,50 +44,46 @@ public class RegisterPanel extends JFrame implements ActionListener {
         registerButton = new JButton("Register");
         registerButton.addActionListener(this);
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        mainPanel.add(userLabel, gbc);
+        JLabel loginLabel = new JLabel("Already have an account?");
+        loginLabel.setForeground(Color.WHITE);
+        
+        loginButton = new JButton("Login");
+        loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        loginButton.setBorderPainted(false);
+        loginButton.setContentAreaFilled(false);
+        loginButton.setForeground(new Color(173, 216, 230));
+        loginButton.addActionListener(this);
 
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0; gbc.gridy = 0;
+        mainPanel.add(userLabel, gbc);
+        gbc.gridx = 1; gbc.gridy = 0; gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(usernameField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 0; gbc.gridy = 1; gbc.fill = GridBagConstraints.NONE;
         mainPanel.add(emailLabel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 1; gbc.gridy = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(emailField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 0; gbc.gridy = 2; gbc.fill = GridBagConstraints.NONE;
         mainPanel.add(pswdLabel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 1; gbc.gridy = 2; gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(pswdField, gbc);
         
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 0; gbc.gridy = 3; gbc.fill = GridBagConstraints.NONE;
         mainPanel.add(confirmPswdLabel, gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 1; gbc.gridy = 3; gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(confirmPswdField, gbc);
         
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2; gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(registerButton, gbc);
+
+        JPanel loginPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        loginPanel.setOpaque(false);
+        loginPanel.add(loginLabel);
+        loginPanel.add(loginButton);
+        
+        gbc.gridx = 0; gbc.gridy = 5;
+        mainPanel.add(loginPanel, gbc);
         
         setContentPane(mainPanel);
         pack();
@@ -107,6 +103,9 @@ public class RegisterPanel extends JFrame implements ActionListener {
                 dispose();
                 new LoginPanel();
             }
+        } else if (e.getSource() == loginButton) {
+            dispose();
+            new LoginPanel();
         }
     }
 }

@@ -1,4 +1,5 @@
 package com.rebook.dao;
 
-public class DBConnection {
+public class DBConnection{
+    system.out.println("DBConnection class loaded");
 }

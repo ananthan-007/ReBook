@@ -1,5 +1,4 @@
 package com.rebook.view;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -14,58 +13,73 @@ public class LoginPanel extends JFrame implements ActionListener {
     public LoginPanel() {
         setTitle("Login Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 220));
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(new Color(0, 128, 128));
-        setContentPane(panel);
-
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBackground(new Color(0, 128, 128));
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel emailLabel = new JLabel("Email:");
         emailLabel.setForeground(Color.WHITE);
-        gbc.gridx = 0; gbc.gridy = 0;
-        panel.add(emailLabel, gbc);
-
         emailField = new JTextField(20);
-        gbc.gridx = 1; gbc.gridy = 0;
-        panel.add(emailField, gbc);
-
+        
         JLabel pswdLabel = new JLabel("Password:");
         pswdLabel.setForeground(Color.WHITE);
-        gbc.gridx = 0; gbc.gridy = 1;
-        panel.add(pswdLabel, gbc);
-
         pswdField = new JPasswordField(20);
-        gbc.gridx = 1; gbc.gridy = 1;
-        panel.add(pswdField, gbc);
-
+        
         loginButton = new JButton("Login");
         loginButton.addActionListener(this);
-        gbc.gridx = 0; gbc.gridy = 2;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(loginButton, gbc);
-
-        JPanel signUpPanel = new JPanel();
-        signUpPanel.setOpaque(false);
+        
         JLabel signUpLabel = new JLabel("Don't have an account?");
         signUpLabel.setForeground(Color.WHITE);
+        
         signUpButton = new JButton("Sign Up");
+        signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         signUpButton.setBorderPainted(false);
         signUpButton.setContentAreaFilled(false);
         signUpButton.setForeground(new Color(173, 216, 230));
-        signUpButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         signUpButton.addActionListener(this);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainPanel.add(emailLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        mainPanel.add(emailField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        mainPanel.add(pswdLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        mainPanel.add(pswdField, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 2;
+        gbc.gridwidth = 2; 
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER; 
+        mainPanel.add(loginButton, gbc);
+        
+        JPanel signUpPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        signUpPanel.setOpaque(false);
         signUpPanel.add(signUpLabel);
         signUpPanel.add(signUpButton);
-
-        gbc.gridx = 0; gbc.gridy = 3;
-        panel.add(signUpPanel, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(signUpPanel, gbc);
+        
+        setContentPane(mainPanel);
 
         pack();
         setVisible(true);
@@ -74,8 +88,12 @@ public class LoginPanel extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            String email = emailField.getText();
-            String password = new String(pswdField.getPassword());
-            System.out.println("Login attempt with Email: " + email);        }
+
+            //dashboard loading option
+            
+        } else if (e.getSource() == signUpButton) {
+            dispose();
+            new RegisterPanel();
+        }
     }
 }

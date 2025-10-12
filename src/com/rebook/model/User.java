@@ -4,8 +4,28 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String password;
     private String phone;
+    private String password;
+
+    // Empty constructor (needed for DAO)
+    public User() {}
+
+    // Constructor for creating a new user (e.g., during registration)
+    public User(String name, String email, String phone, String password) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
+    // Full constructor (optional, for internal use)
+    public User(int id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
 
     // Getters and setters
     public int getId() { return id; }
@@ -17,9 +37,9 @@ public class User {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-
     public String getPhone() { return phone; }
     public void setPhone(String phone) { this.phone = phone; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 }

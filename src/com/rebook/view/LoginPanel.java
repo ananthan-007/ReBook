@@ -88,8 +88,10 @@ public class LoginPanel extends JFrame implements ActionListener {
             User user = UserDAO.loginUser(email, password);
             if (user != null) {
                 JOptionPane.showMessageDialog(this, "Welcome back, " + user.getName() + "!");
-                dispose(); // close login
-                // new HomePage(user);  // open home window (to be implemented)
+                com.rebook.util.Session.setUser(user);
+                dispose();
+                new Dashboard();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Invalid email or password!");
             }

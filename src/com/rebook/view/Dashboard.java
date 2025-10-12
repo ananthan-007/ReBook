@@ -62,6 +62,8 @@ public class Dashboard extends JFrame {
         footer.add(footText);
         add(footer, BorderLayout.SOUTH);
 
+        setVisible(true);
+
         // Button actions
         addItemBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening Add Item Page"));
         viewItemsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening View Items Page"));

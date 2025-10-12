@@ -1,6 +1,5 @@
 package com.rebook.main;
-import  com.rebook.view.LoginPanel;
-import com.rebook.view.Dashboard;
+import  com.rebook.view.*:
 public class AppLauncher {
     public static void main(String[] args) {
          SwingUtilities.invokeLater(() -> new Dashboard().setVisible(true));

@@ -57,10 +57,6 @@ public class UserDAO {
                         user.setPhone(rs.getString("phone"));
                         return user;
                     }
-                    System.out.println("Input Password: " + password);
-                    System.out.println("Stored Hash: " + storedHash);
-                    System.out.println("Match: " + PasswordUtil.checkPassword(password, storedHash));
-
                 }
             }
 

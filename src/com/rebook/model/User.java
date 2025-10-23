@@ -18,15 +18,6 @@ public class User {
         this.password = password;
     }
 
-    // Full constructor (optional, for internal use)
-    public User(int id, String name, String email, String phone, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
-
     // Getters and setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ItemDAO {
 
-    // INSERT
+    // ✅ INSERT (Add new item)
     public void addItem(Item item) throws SQLException {
         String sql = "INSERT INTO items (title, description, price, quantity, image_path, created_at) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
@@ -28,7 +28,7 @@ public class ItemDAO {
         }
     }
 
-    // SELECT ALL
+    // ✅ SELECT ALL (Fetch all items)
     public List<Item> getAllItems() throws SQLException {
         List<Item> items = new ArrayList<>();
         String sql = "SELECT id, title, description, price, quantity, image_path, created_at FROM items ORDER BY created_at DESC";
@@ -37,14 +37,13 @@ public class ItemDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Item it = mapRowToItem(rs);
-                items.add(it);
+                items.add(mapRowToItem(rs));
             }
         }
         return items;
     }
 
-    // SELECT BY ID
+    // ✅ SELECT BY ID (Get single item)
     public Item getItemById(int id) throws SQLException {
         String sql = "SELECT id, title, description, price, quantity, image_path, created_at FROM items WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -58,7 +57,7 @@ public class ItemDAO {
         return null;
     }
 
-    // UPDATE
+    // ✅ UPDATE (Edit item details)
     public boolean updateItem(Item item) throws SQLException {
         String sql = "UPDATE items SET title = ?, description = ?, price = ?, quantity = ?, image_path = ? WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -75,7 +74,7 @@ public class ItemDAO {
         }
     }
 
-    // DELETE
+    // ✅ DELETE (Remove an item)
     public boolean deleteItem(int id) throws SQLException {
         String sql = "DELETE FROM items WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -85,41 +84,40 @@ public class ItemDAO {
         }
     }
 
-    // SEARCH (safe use of LIKE, with escaping)
-    public List<Item> searchItemsByTitle(String query) throws SQLException {
+    // ✅ SEARCH (Used by MyListingsPanel)
+    public List<Item> searchItems(String keyword) {
         List<Item> items = new ArrayList<>();
-        // Escape user input for LIKE wildcards, then use parameterized query
-        String escaped = escapeForLike(query);
-        String sql = "SELECT id, title, description, price, quantity, image_path, created_at FROM items WHERE title LIKE ? ESCAPE '\\' ORDER BY created_at DESC";
+        String sql = "SELECT id, title, description, price, quantity, image_path, created_at " +
+                "FROM items WHERE title LIKE ? OR description LIKE ? ORDER BY created_at DESC";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, "%" + escaped + "%"); // parameterized, safe
+
+            String search = "%" + keyword + "%";
+            ps.setString(1, search);
+            ps.setString(2, search);
+
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) items.add(mapRowToItem(rs));
+                while (rs.next()) {
+                    items.add(mapRowToItem(rs));
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return items;
     }
 
-    // Helper: map a ResultSet row to an Item
+    // ✅ Helper: Convert ResultSet row → Item object
     private Item mapRowToItem(ResultSet rs) throws SQLException {
-        Item it = new Item();
-        it.setId(rs.getInt("id"));
-        it.setTitle(rs.getString("title"));
-        it.setDescription(rs.getString("description"));
-        it.setPrice(rs.getDouble("price"));
-        it.setQuantity(rs.getInt("quantity"));
-        it.setImagePath(rs.getString("image_path"));
-        it.setCreatedAt(rs.getTimestamp("created_at"));
-        return it;
-    }
-
-    // Escape %, _ and backslash for safe LIKE usage
-    private static String escapeForLike(String input) {
-        if (input == null) return null;
-        return input.replace("\\", "\\\\")
-                .replace("%", "\\%")
-                .replace("_", "\\_");
+        Item item = new Item();
+        item.setId(rs.getInt("id"));
+        item.setTitle(rs.getString("title"));
+        item.setDescription(rs.getString("description"));
+        item.setPrice(rs.getDouble("price"));
+        item.setQuantity(rs.getInt("quantity"));
+        item.setImagePath(rs.getString("image_path"));
+        item.setCreatedAt(rs.getTimestamp("created_at"));
+        return item;
     }
 }

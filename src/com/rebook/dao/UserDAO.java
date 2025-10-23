@@ -8,7 +8,7 @@ public class UserDAO {
 
     // Register a new user
     public boolean registerUser(User user) {
-        String checkSql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        String checkSql = "SELECT COUNT(*) FROM users WHERE email =? ";
         String insertSql = "INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();

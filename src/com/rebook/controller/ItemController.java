@@ -11,7 +11,7 @@ public class ItemController {
         try {
             itemDAO.addItem(item);
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

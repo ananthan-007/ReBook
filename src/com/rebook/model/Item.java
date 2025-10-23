@@ -9,6 +9,8 @@ public class Item {
     private String conditionStatus;
     private String type; // Donation or Exchange
     private String imagePath;
+    private double price;
+    private int quantity;
     private Timestamp createdAt;
 
     // Getters & Setters
@@ -29,6 +31,12 @@ public class Item {
 
     public String getImagePath() { return imagePath; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }

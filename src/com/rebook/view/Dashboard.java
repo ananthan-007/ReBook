@@ -65,8 +65,15 @@ public class Dashboard extends JFrame {
         setVisible(true);
 
         // Button actions
-        addItemBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening Add Item Page"));
-        viewItemsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening View Items Page"));
+addItemBtn.addActionListener(e -> new AddItemPanel());
+viewItemsBtn.addActionListener(e -> {
+    JFrame frame = new JFrame("View Items");
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    frame.setSize(800, 400);
+    frame.setLocationRelativeTo(null);
+    frame.add(new ViewItemsPanel());
+    frame.setVisible(true);
+});
         myListingsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening My Listings"));
         logoutBtn.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "You have been logged out.");

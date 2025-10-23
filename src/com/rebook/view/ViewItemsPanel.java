@@ -46,7 +46,7 @@ public class ViewItemsPanel extends JPanel {
                         item.getDescription(),
                         item.getPrice(),
                         item.getQuantity(),
-                        item.isAvailable() ? "Available" : "Donated"
+                        item.getQuantity() > 0 ? "Available" : "Donated"
                 });
             }
         } catch (Exception e) {

@@ -65,7 +65,7 @@ public class Dashboard extends JFrame {
         setVisible(true);
 
         // Button actions
-        addItemBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening Add Item Page"));
+        addItemBtn.addActionListener(e -> new AddItemPanel());
         viewItemsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening View Items Page"));
         myListingsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening My Listings"));
         logoutBtn.addActionListener(e -> {

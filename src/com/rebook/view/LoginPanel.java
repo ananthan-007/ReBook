@@ -17,7 +17,7 @@ public class LoginPanel extends JFrame implements ActionListener {
     public LoginPanel() {
         setTitle("Login Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 220));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new GridBagLayout());

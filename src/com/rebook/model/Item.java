@@ -10,6 +10,7 @@ public class Item {
     private String type; // Exchange, Donation, Purchase
     private String imagePath;
     private int quantity;
+    private int userId;
     private Timestamp createdAt;
 
     // Getters & Setters
@@ -36,4 +37,7 @@ public class Item {
 
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 }

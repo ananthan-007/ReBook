@@ -38,3 +38,16 @@ CREATE TABLE transactions (
                               type ENUM('Exchange', 'Donation', 'Purchase') NOT NULL,
                               FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE
 );
+
+-- REQUESTS TABLE
+DROP TABLE IF EXISTS requests;
+
+CREATE TABLE requests (
+                          request_id INT AUTO_INCREMENT PRIMARY KEY,
+                          item_id INT NOT NULL,
+                          requester_id INT NOT NULL,
+                          status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                          FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+                          FOREIGN KEY (requester_id) REFERENCES users(user_id) ON DELETE CASCADE
+);

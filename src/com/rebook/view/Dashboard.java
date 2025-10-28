@@ -45,7 +45,7 @@ public class Dashboard extends JFrame {
             b.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 128), 8));
             b.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
-
+        logoutBtn.setBackground(new Color(255, 127, 127));
         // Add buttons to center panel
         centerPanel.add(addItemBtn);
         centerPanel.add(viewItemsBtn);

@@ -7,7 +7,7 @@ public class Dashboard extends JFrame {
     public Dashboard() {
         // Frame setup
         setTitle("Dashboard - Reusable Books & Stationary Exchange");
-        setSize(400, 220);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // ensure program closes completely when window closes
         setLocationRelativeTo(null); // Centers the window on screen
         setLayout(new BorderLayout());
@@ -66,11 +66,13 @@ public class Dashboard extends JFrame {
 
         // Button actions
         addItemBtn.addActionListener(e -> new AddItemPanel());
-        viewItemsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening View Items Page"));
-        myListingsBtn.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opening My Listings"));
+        viewItemsBtn.addActionListener(e -> new ViewItemsPanel());
+        myListingsBtn.addActionListener(e -> new MyListingsPanel());
         logoutBtn.addActionListener(e -> {
+            com.rebook.util.Session.clear();
             JOptionPane.showMessageDialog(this, "You have been logged out.");
             dispose(); // closes dashboard
+            new LoginPanel();
         });
     }
 }

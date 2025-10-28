@@ -48,7 +48,6 @@ public class ViewItemsController {
             details.append("Title: ").append(fullItem.getTitle()).append("\n");
             details.append("Type: ").append(fullItem.getType()).append("\n");
             details.append("Condition: ").append(fullItem.getConditionStatus()).append("\n");
-            details.append("Quantity: ").append(fullItem.getQuantity()).append("\n");
             details.append("Description: ").append(fullItem.getDescription()).append("\n");
             
             JOptionPane.showMessageDialog(view, details.toString(), "Item Details", JOptionPane.INFORMATION_MESSAGE);
@@ -83,4 +82,3 @@ public class ViewItemsController {
         }
     }
 }
-

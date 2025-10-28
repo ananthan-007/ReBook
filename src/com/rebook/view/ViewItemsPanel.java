@@ -1,6 +1,3 @@
-    return card;
-    }
-}
 package com.rebook.view;
 
 import com.rebook.controller.ViewItemsController;
@@ -173,4 +170,4 @@ public class ViewItemsPanel extends JFrame {
         
         return card;
     }
-            }
+}

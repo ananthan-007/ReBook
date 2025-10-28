@@ -1,3 +1,6 @@
+    return card;
+    }
+}
 package com.rebook.view;
 
 import com.rebook.controller.ViewItemsController;
@@ -35,24 +38,14 @@ public class ViewItemsPanel extends JFrame {
         btnRefresh = new JButton("Refresh");
         btnRefresh.setFont(new Font("Arial", Font.BOLD, 14));
         
-        JLabel filterLabel = new JLabel("Filter by Type:");
-        filterLabel.setForeground(Color.WHITE);
-        filterLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
         
         searchPanel.add(new JLabel("Search: "));
         searchPanel.add(searchField);
         searchPanel.add(btnSearch);
         searchPanel.add(btnRefresh);
         searchPanel.add(Box.createHorizontalStrut(30));
-        searchPanel.add(filterLabel);
-        
-        JCheckBox donationsBox = new JCheckBox("Donations");
-        donationsBox.setForeground(Color.WHITE);
-        JCheckBox exchangesBox = new JCheckBox("Exchanges");
-        exchangesBox.setForeground(Color.WHITE);
-        
-        searchPanel.add(donationsBox);
-        searchPanel.add(exchangesBox);
+    
         
         add(searchPanel, BorderLayout.NORTH);
         
@@ -180,4 +173,4 @@ public class ViewItemsPanel extends JFrame {
         
         return card;
     }
-}
+            }

@@ -54,7 +54,6 @@ public class Validator {
     //sql injection safety
     private static final Pattern SAFE_TITLE = Pattern.compile("^[A-Za-z0-9 .,'\\-()]{1,200}$");
     private static final Pattern POSITIVE_INT = Pattern.compile("^\\d+$");
-    private static final Pattern PRICE = Pattern.compile("^\\d{1,9}(\\.\\d{1,2})?$");
 
     public static boolean isValidTitle(String s) {
         return s != null && SAFE_TITLE.matcher(s).matches();
@@ -62,10 +61,6 @@ public class Validator {
 
     public static boolean isPositiveInt(String s) {
         return s != null && POSITIVE_INT.matcher(s).matches() && Integer.parseInt(s) > 0;
-    }
-
-    public static boolean isValidPrice(String s) {
-        return s != null && PRICE.matcher(s).matches() && Double.parseDouble(s) >= 0.0;
     }
 
     public static String safeTrim(String s) {

@@ -19,6 +19,7 @@ public class RegisterPanel extends JFrame implements ActionListener {
     public RegisterPanel() {
         setTitle("Register Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel(new GridBagLayout());

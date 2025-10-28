@@ -24,7 +24,7 @@ public class AddItemPanel extends JFrame implements ActionListener {
     public AddItemPanel() {
         setTitle("Add New Item");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(500, 500);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -130,6 +130,7 @@ public class AddItemPanel extends JFrame implements ActionListener {
             item.setConditionStatus(condition);
             item.setType(type);
             item.setImagePath(imagePath);
+            item.setUserId(com.rebook.util.Session.getUser().getId());
 
             boolean success = ItemController.addItem(item);
             if (success) {

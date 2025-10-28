@@ -79,7 +79,6 @@ public class MyListingsController {
             return;
         }
 
-        // Check if item belongs to current user
         int id = (int) table.getValueAt(row, 0);
         try {
             Item item = dao.getItemById(id);
@@ -97,6 +96,7 @@ public class MyListingsController {
         }
     }
 
+    // ✅ UPDATED EDIT FUNCTION (Now allows editing Title + Type)
     public void editSelectedItem() {
         JTable table = view.getTable();
         int row = table.getSelectedRow();
@@ -109,20 +109,39 @@ public class MyListingsController {
         try {
             Item item = dao.getItemById(id);
 
-            // Check if item belongs to current user
+            // Ownership check
             if (item.getUserId() != Session.getUser().getId()) {
                 JOptionPane.showMessageDialog(view, "You can only edit your own items!");
                 return;
             }
 
-            String oldTitle = (String) table.getValueAt(row, 1);
+            // --- Edit Title ---
+            String oldTitle = item.getTitle();
             String newTitle = JOptionPane.showInputDialog(view, "Edit Title:", oldTitle);
+            if (newTitle == null || newTitle.trim().isEmpty()) return;
 
-            if (newTitle != null && !newTitle.trim().isEmpty()) {
-                item.setTitle(newTitle);
-                dao.updateItem(item);
-                loadItems();
-            }
+            // --- Edit Type (Donation / Exchange) ---
+            String[] types = {"Donation", "Exchange"};
+            String newType = (String) JOptionPane.showInputDialog(
+                    view,
+                    "Select new item type:",
+                    "Edit Type",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    types,
+                    item.getType()
+            );
+
+            if (newType == null || newType.trim().isEmpty()) return;
+
+            // Update the item
+            item.setTitle(newTitle.trim());
+            item.setType(newType);
+            dao.updateItemTitleAndType(item);
+
+            JOptionPane.showMessageDialog(view, "Item updated successfully!");
+            loadItems();
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(view, "Error updating item: " + e.getMessage());
         }

@@ -84,6 +84,25 @@ public class ItemDAO {
         }
     }
 
+    // UPDATE ONLY TITLE AND TYPE
+    public boolean updateItemTitleAndType(Item item) {
+        String sql = "UPDATE items SET title = ?, type = ? WHERE id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, item.getTitle());
+            ps.setString(2, item.getType());
+            ps.setInt(3, item.getId());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     // GET ITEM WITH USER INFO
     public Item getItemWithUser(int itemId) throws SQLException {
         String sql = "SELECT i.id, i.title, i.description, i.quantity, i.type, i.condition_status, i.image_path, i.user_id, i.created_at, " +

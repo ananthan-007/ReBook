@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="diagram1" name="Page-1">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1"
+      connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169"
+      math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="mxCell1"
+          value="&lt;b&gt;MyListingsController&lt;/b&gt;&lt;hr/&gt;MyListingsPanel myListingsPanel&lt;br/&gt;ItemDAO itemDAO&lt;br/&gt;RequestDAO requestDAO&lt;br/&gt;Session session&lt;br/&gt;&lt;hr/&gt;void refreshTable()&lt;br/&gt;void setupListeners()&lt;br/&gt;void showError(java.lang.String)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="220" height="220" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell2"
+          value="&lt;b&gt;ItemDAO&lt;/b&gt;&lt;hr/&gt;DBConnection db&lt;br/&gt;Connection conn&lt;br/&gt;&lt;hr/&gt;List&lt;Item&gt; getItemsForUser(int)&lt;br/&gt;void addItem(Item)&lt;br/&gt;void updateItem(Item)&lt;br/&gt;void deleteItem(int)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell3"
+          value="&lt;b&gt;RequestDAO&lt;/b&gt;&lt;hr/&gt;DBConnection db&lt;br/&gt;Connection conn&lt;br/&gt;&lt;hr/&gt;List&lt;Request&gt; getRequestsForUser(int)&lt;br/&gt;void addRequest(Request)&lt;br/&gt;void updateRequest(Request)&lt;br/&gt;void deleteRequest(int)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="40" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell4"
+          value="&lt;b&gt;Item&lt;/b&gt;&lt;hr/&gt;int id&lt;br/&gt;String title&lt;br/&gt;String author&lt;br/&gt;String edition&lt;br/&gt;Timestamp postedAt&lt;br/&gt;&lt;hr/&gt;int getId()&lt;br/&gt;void setId(int)&lt;br/&gt;String getTitle()&lt;br/&gt;void setTitle(String)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="40" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell5"
+          value="&lt;b&gt;Request&lt;/b&gt;&lt;hr/&gt;int id&lt;br/&gt;int itemId&lt;br/&gt;int userId&lt;br/&gt;String status&lt;br/&gt;Timestamp requestedAt&lt;br/&gt;&lt;hr/&gt;int getId()&lt;br/&gt;void setId(int)&lt;br/&gt;int getItemId()&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell6"
+          value="&lt;b&gt;MyListingsPanel&lt;/b&gt;&lt;hr/&gt;JTable listingsTable&lt;br/&gt;JButton refreshButton&lt;br/&gt;JButton editButton&lt;br/&gt;&lt;hr/&gt;void initComponents()&lt;br/&gt;void populateTable(List&lt;Item&gt;)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="220" height="160" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell7"
+          value="&lt;b&gt;DBConnection&lt;/b&gt;&lt;hr/&gt;static String CONFIG_PATH&lt;br/&gt;&lt;hr/&gt;Connection getConnection()&lt;br/&gt;void close(Connection)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="260" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell8"
+          value="&lt;b&gt;Session&lt;/b&gt;&lt;hr/&gt;static User currentUser&lt;br/&gt;&lt;hr/&gt;static void setCurrentUser(User)&lt;br/&gt;static User getCurrentUser()&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="260" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="mxCell9"
+          value="&lt;b&gt;User&lt;/b&gt;&lt;hr/&gt;int id&lt;br/&gt;String username&lt;br/&gt;String email&lt;br/&gt;&lt;hr/&gt;int getId()&lt;br/&gt;void setId(int)&lt;br/&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Example relationships -->
+        <mxCell id="edge2000" style="endArrow=block;endFill=1;" edge="1" parent="1" source="mxCell1" target="mxCell2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2001" style="endArrow=block;endFill=1;" edge="1" parent="1" source="mxCell1" target="mxCell3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2002" style="endArrow=none;" edge="1" parent="1" source="mxCell1" target="mxCell6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
